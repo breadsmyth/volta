@@ -1,3 +1,5 @@
 # Initialize engine
+import settings
+settings.init()
+
 import engine.init
-print('Imported it')
