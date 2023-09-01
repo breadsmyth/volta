@@ -1,0 +1,28 @@
+# Game options
+
+# Any line starting with '#' is a comment and will be ignored.
+# All options are of the format 'name:value'.
+
+fps:60
+resolution:800x600
+
+# Increase this number if you want the game to
+# appear at the same resolution, but "zoomed in".
+zoom:1
+
+# Controls
+up:W
+left:A
+down:S
+right:D
+
+use:Z
+fire:X
+menu:C
+inv:I
+status:TAB
+
+# Weapon switching
+next:E
+prev:Q
+
