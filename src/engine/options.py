@@ -1,6 +1,27 @@
 import re
 resolution_pattern = re.compile(r'(\d+)[xX](\d+)')
 
+option_details = {
+    # name          type        default value
+    'fps':          ('int',     60),
+    'resolution':   ('intxint', '800x600'),
+    'zoom':         ('int',     1),
+
+    'up':           ('key',     'W'),
+    'left':         ('key',     'A'),
+    'down':         ('key',     'S'),
+    'right':        ('key',     'D'),
+
+    'use':          ('key',     'Z'),
+    'fire':         ('key',     'X'),
+    'menu':         ('key',     'C'),
+    'inv':          ('key',     'I'),
+    'status':       ('key',     'TAB'),
+
+    'next':         ('key',     'E'),
+    'prev':         ('key',     'Q'),
+}
+
 def is_opt(line):
     line = line.lstrip()
     return len(line) and not line.startswith('#')
@@ -14,38 +35,32 @@ def read():
     opt_dict = {}
     for opt in options:
         name, _, value = opt.partition(':')
+        opt_type, opt_default = option_details[name]
+
         # Parse numbers
-        if name == 'fps':
-            try:
+        try:
+            if opt_type == 'int':
                 value = int(value)
 
-            except ValueError:
-                print("options.txt: bad value for 'fps'! defaulting to 60")
-                value = 60
-
-        elif name == 'resolution':
-            try:
+            elif opt_type == 'intxint':
                 matches = resolution_pattern.match(value)
                 if matches is None:
                     raise ValueError
 
                 value = (int(matches.group(1)), int(matches.group(2)))
 
-            except ValueError:
-                print("options.txt: bad value for 'resolution'! defaulting to 800x600")
-                value = (800, 600)
-
-        elif name == 'zoom':
-            try:
-                value = int(value)
-
-            except ValueError:
-                print("options.txt: bad value for 'zoom'! defaulting to 1")
-                value = 1
+        except ValueError:
+            print(f"options.txt: bad value for '{name}'! defaulting to {opt_default}")
+            value = opt_default
 
         opt_dict[name] = value
 
-        # Fill in missing values
-        # (TODO)
+    # Fill in missing values
+    for name, opt_tuple in option_details.items():
+        _, opt_default = opt_tuple
+
+        if name not in opt_dict.keys():
+            print(f"options.txt: no entry for '{name}'! defaulting to {opt_default}")
+            opt_dict[name] = opt_default
 
     return opt_dict
