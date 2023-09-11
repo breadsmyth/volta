@@ -51,6 +51,7 @@ def read():
                 value = (int(matches.group(1)), int(matches.group(2)))
 
             elif opt_type == 'key':
+                # Check if value is a valid keystring (will throw ValueError if not)
                 pygame.key.key_code(value.lower())
 
         except ValueError:

@@ -8,7 +8,7 @@ resolution:800x600
 
 # Increase this number if you want the game to
 # appear at the same resolution, but "zoomed in".
-zoom:1
+zoom:3
 
 # Controls
 up:W

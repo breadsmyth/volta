@@ -6,3 +6,4 @@ def init():
     IS_RUNNING = True
 
     global OPTIONS
+    global RESOLUTION
