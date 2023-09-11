@@ -1,3 +1,4 @@
+import pygame
 import re
 resolution_pattern = re.compile(r'(\d+)[xX](\d+)')
 
@@ -48,6 +49,9 @@ def read():
                     raise ValueError
 
                 value = (int(matches.group(1)), int(matches.group(2)))
+
+            elif opt_type == 'key':
+                pygame.key.key_code(value.lower())
 
         except ValueError:
             print(f"options.txt: bad value for '{name}'! defaulting to {opt_default}")

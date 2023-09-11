@@ -4,3 +4,5 @@
 def init():
     global IS_RUNNING
     IS_RUNNING = True
+
+    global OPTIONS

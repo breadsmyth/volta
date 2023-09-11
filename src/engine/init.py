@@ -4,9 +4,9 @@ import pygame
 import settings
 
 pygame.init()
-opt_dict = opts.read()
+settings.OPTIONS = opts.read()
 
-screen = pygame.display.set_mode(opt_dict['resolution'])
+screen = pygame.display.set_mode(settings.OPTIONS['resolution'])
 fps_clock = pygame.time.Clock()
 
 while settings.IS_RUNNING:
